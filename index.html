@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raphael Dos Santos | Mechanical Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#f4f7fa; --bg-alt:#e9eef3; --surface:#ffffff; --surface-soft:#f8fafc; --ink:#173047; --ink-soft:#44576a; --muted:#6f8090; --line:#d6dee6; --accent:#1b5f93; --accent-soft:#d9eaf6; --accent-strong:#0f4268; --shadow:0 18px 48px rgba(28,58,88,.09); --radius:24px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:"Source Sans 3",sans-serif; color:var(--ink); background:radial-gradient(circle at top right, rgba(27,95,147,.10), transparent 25%), linear-gradient(180deg, #f7fafc 0%, #f1f5f8 100%); line-height:1.65; }
+    img { display:block; max-width:100%; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1180px, calc(100vw - 32px)); margin:0 auto; }
+    nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(10px); background:rgba(244,247,250,.88); border-bottom:1px solid rgba(214,222,230,.9); }
+    .nav-inner { width:min(1180px, calc(100vw - 32px)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; padding:1rem 0; }
+    .brand { font-family:"IBM Plex Mono",monospace; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-strong); }
+    .nav-controls { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; justify-content:flex-end; }
+    .nav-links { list-style:none; display:flex; gap:1.2rem; flex-wrap:wrap; }
+    .nav-links a, .nav-controls label { font-size:.95rem; color:var(--ink-soft); font-weight:500; }
+    section { padding:5.5rem 0; }
+    .eyebrow { font-family:"IBM Plex Mono",monospace; color:var(--accent); font-size:.78rem; text-transform:uppercase; letter-spacing:.18em; margin-bottom:1rem; }
+    .section-title { font-family:"Source Serif 4",serif; font-size:clamp(2.2rem, 5vw, 3.6rem); line-height:1.08; letter-spacing:-.03em; margin-bottom:1rem; }
+    .section-copy { font-size:1.08rem; color:var(--ink-soft); max-width:760px; }
+    .hero { padding-top:4.5rem; }
+    .hero-panel { display:grid; grid-template-columns:1.2fr .9fr; gap:2rem; align-items:stretch; background:linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,245,250,.96)); border:1px solid rgba(214,222,230,.95); border-radius:34px; box-shadow:var(--shadow); overflow:hidden; }
+    .hero-copy-wrap { padding:3.5rem; position:relative; }
+    .hero-copy-wrap::after { content:""; position:absolute; inset:auto auto 0 0; width:180px; height:180px; background:radial-gradient(circle, rgba(27,95,147,.12), transparent 70%); pointer-events:none; }
+    .hero-name { font-family:"Source Serif 4",serif; font-size:clamp(3rem, 7vw, 5.2rem); line-height:.95; letter-spacing:-.045em; margin-bottom:1rem; }
+    .hero-name span { color:var(--accent); }
+    .hero-sub { color:var(--ink-soft); font-size:1.1rem; max-width:620px; margin-bottom:1.5rem; }
+    .pill-row { display:flex; flex-wrap:wrap; gap:.65rem; margin:1.25rem 0 1.75rem; }
+    .pill { font-family:"IBM Plex Mono",monospace; font-size:.73rem; letter-spacing:.08em; text-transform:uppercase; padding:.5rem .8rem; border-radius:999px; border:1px solid rgba(27,95,147,.15); background:rgba(217,234,246,.7); color:var(--accent-strong); }
+    .contact-row { display:flex; flex-wrap:wrap; gap:.9rem; margin-bottom:1.5rem; }
+    .contact-link { padding:.9rem 1.05rem; border:1px solid var(--line); background:var(--surface); border-radius:16px; font-weight:600; color:var(--ink-soft); box-shadow:0 10px 22px rgba(28,58,88,.04); }
+    .intro-card { margin-top:1rem; padding:1.1rem 1.2rem; border-left:4px solid var(--accent); background:rgba(255,255,255,.82); color:var(--ink-soft); max-width:650px; }
+    .hero-portrait { background:linear-gradient(180deg, #e7eef5 0%, #d8e4ef 100%); padding:2rem; display:flex; align-items:center; justify-content:center; position:relative; gap:1.5rem; }
+    .hero-portrait::before, .hero-portrait::after { content:""; position:absolute; border-radius:50%; background:rgba(255,255,255,.45); }
+    .hero-portrait::before { width:220px; height:220px; top:16px; right:-20px; }
+    .hero-portrait::after { width:150px; height:150px; bottom:24px; left:-24px; }
+    .portrait-frame { width:min(100%, 360px); border-radius:28px; overflow:hidden; border:1px solid rgba(255,255,255,.7); box-shadow:0 28px 50px rgba(20,54,84,.15); position:relative; z-index:1; background:#fff; }
+    .orbit-wrap { width:220px; min-width:220px; height:420px; position:relative; display:flex; align-items:center; justify-content:center; z-index:1; }
+    .orbit-core { width:150px; height:150px; border-radius:50%; position:relative; background:radial-gradient(circle, rgba(255,255,255,.95) 0%, rgba(214,228,239,.95) 58%, rgba(183,205,222,.85) 100%); box-shadow:inset 0 0 0 1px rgba(27,95,147,.08), 0 16px 30px rgba(27,95,147,.12); }
+    .orbit-core::before { content:""; position:absolute; inset:22px; border-radius:50%; border:1px dashed rgba(27,95,147,.35); }
+    .orbit-core::after { content:""; position:absolute; inset:48px; border-radius:50%; background:radial-gradient(circle, rgba(27,95,147,.18), rgba(27,95,147,.03)); }
+    .orbit-ring { position:absolute; border:1px solid rgba(27,95,147,.22); border-radius:50%; animation:spin 18s linear infinite; }
+    .orbit-ring.r1 { width:210px; height:210px; }
+    .orbit-ring.r2 { width:170px; height:290px; animation-direction:reverse; animation-duration:24s; }
+    .orbit-ring.r3 { width:240px; height:150px; animation-duration:20s; }
+    .orbit-dot { position:absolute; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(27,95,147,.10); }
+    .orbit-ring.r1 .orbit-dot { top:18px; left:34px; }
+    .orbit-ring.r2 .orbit-dot { bottom:32px; right:18px; background:#7ca9c8; }
+    .orbit-ring.r3 .orbit-dot { top:24px; right:30px; background:#0f4268; }
+    .orbit-grid { position:absolute; inset:16px; border-radius:28px; background-image:linear-gradient(rgba(27,95,147,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(27,95,147,.08) 1px, transparent 1px); background-size:24px 24px; mask-image:radial-gradient(circle at center, black 35%, transparent 78%); opacity:.5; }
+    .orbit-label { position:absolute; font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-strong); opacity:.82; }
+    .orbit-label.top { top:42px; right:18px; }
+    .orbit-label.right { top:50%; right:-8px; transform:translateY(-50%); }
+    .orbit-label.bottom { bottom:42px; left:28px; }
+    .orbit-label.left { top:50%; left:-12px; transform:translateY(-50%); }
+    .orbit-axis { position:absolute; width:1px; height:280px; background:linear-gradient(180deg, transparent, rgba(27,95,147,.24), transparent); }
+    @keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; align-items:start; }
+    .card, .project-card, .gallery-card, .details-card { background:rgba(255,255,255,.94); border:1px solid var(--line); border-radius:var(--radius); box-shadow:0 14px 32px rgba(28,58,88,.05); }
+    .card { padding:1.6rem; }
+    .card h3, .project-title, .details-card summary, .gallery-title { font-family:"Source Serif 4",serif; }
+    .card h3 { font-size:1.35rem; margin-bottom:.7rem; }
+    .card p, .card li { color:var(--ink-soft); }
+    .card ul { padding-left:1.2rem; display:grid; gap:.45rem; }
+    .skills-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:1rem; margin-top:2rem; }
+    .skill-block { padding:1.35rem; background:var(--surface); border:1px solid var(--line); border-radius:20px; }
+    .skill-block h3 { font-size:1.05rem; margin-bottom:.8rem; }
+    .skill-list { display:flex; flex-wrap:wrap; gap:.55rem; }
+    .skill-chip { padding:.42rem .7rem; background:var(--surface-soft); border:1px solid var(--line); border-radius:999px; color:var(--ink-soft); font-size:.92rem; font-weight:600; }
+    .details-stack { display:grid; gap:1rem; margin-top:2rem; }
+    .details-card { overflow:hidden; }
+    .details-card summary { list-style:none; cursor:pointer; padding:1.2rem 1.4rem; font-size:1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .details-card summary::-webkit-details-marker { display:none; }
+    .details-card summary span { font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+    .details-content { padding:0 1.4rem 1.4rem; color:var(--ink-soft); }
+    .media-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:1rem; margin-top:1rem; }
+    .comparison-block { margin-top:1rem; margin-bottom:1.25rem; padding:1.1rem; background:linear-gradient(180deg, rgba(217,234,246,.65), rgba(248,250,252,.95)); border:1px solid rgba(27,95,147,.18); border-radius:20px; }
+    .comparison-head { font-family:"Source Serif 4",serif; font-size:1.45rem; margin-bottom:.25rem; color:var(--accent-strong); }
+    .comparison-copy { color:var(--ink-soft); margin-bottom:1rem; max-width:820px; }
+    .comparison-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:stretch; }
+    .comparison-card { background:rgba(255,255,255,.96); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:0 10px 24px rgba(28,58,88,.06); }
+    .comparison-label { font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); padding:1rem 1rem .35rem; }
+    .comparison-card img { width:100%; height:300px; object-fit:contain; background:#eef3f7; padding:.75rem; }
+    .comparison-card p { padding:0 1rem 1rem; color:var(--ink-soft); }
+    .media-figure { background:var(--surface-soft); border:1px solid var(--line); border-radius:18px; overflow:hidden; }
+    .media-figure img { width:100%; height:260px; object-fit:cover; background:#eef3f7; }
+    .media-figure img.contain { object-fit:contain; padding:.65rem; }
+    .media-figure video { width:100%; height:260px; object-fit:cover; background:#eef3f7; display:block; }
+    .media-figure video.contain { object-fit:contain; padding:.65rem; }
+    .media-figure figcaption { padding:.9rem 1rem 1rem; font-size:.96rem; color:var(--ink-soft); }
+    .data-card { background:var(--surface-soft); border:1px solid var(--line); border-radius:18px; overflow:hidden; }
+    .data-card .gallery-body { padding:1rem 1.1rem 1.2rem; }
+    .projects-wrap { display:grid; gap:1.5rem; margin-top:2rem; }
+    .project-card { overflow:hidden; }
+    .project-head { padding:1.6rem 1.8rem; border-bottom:1px solid var(--line); display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; background:linear-gradient(180deg, rgba(247,250,252,.95), rgba(255,255,255,.95)); }
+    .project-kicker { font-family:"IBM Plex Mono",monospace; font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:.35rem; }
+    .project-title { font-size:1.9rem; margin-bottom:.35rem; }
+    .project-sub { color:var(--muted); font-weight:600; }
+    .project-body { padding:1.8rem; display:grid; gap:1.3rem; }
+    .metric-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:1rem; }
+    .metric { background:var(--surface-soft); border:1px solid var(--line); border-radius:18px; padding:1rem; }
+    .metric strong { display:block; font-family:"Source Serif 4",serif; font-size:1.3rem; margin-bottom:.2rem; }
+    .metric span { color:var(--ink-soft); font-size:.96rem; }
+    .bullet-grid { display:grid; grid-template-columns:1fr 1fr; gap:.8rem 1.4rem; list-style:none; }
+    .bullet-grid li { padding-left:1rem; position:relative; color:var(--ink-soft); }
+    .bullet-grid li::before { content:""; position:absolute; left:0; top:.68rem; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+    .findings-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:1rem; margin-top:2rem; }
+    .gallery-card { overflow:hidden; }
+    .gallery-card img { width:100%; height:270px; object-fit:cover; background:#eef3f7; }
+    .gallery-body { padding:1rem 1.1rem 1.2rem; }
+    .gallery-title { font-size:1.2rem; margin-bottom:.35rem; }
+    .gallery-body p { color:var(--ink-soft); }
+    .contact-panel { padding:2rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; }
+    .contact-actions { display:flex; flex-wrap:wrap; gap:.9rem; justify-content:flex-end; }
+    .action-btn { padding:.9rem 1.1rem; border-radius:16px; border:1px solid var(--line); background:var(--surface); color:var(--accent-strong); font-weight:700; box-shadow:0 10px 24px rgba(28,58,88,.06); }
+    .action-btn.primary { background:var(--accent); border-color:var(--accent); color:white; }
+    footer { padding:1.6rem 0 3rem; color:var(--muted); font-size:.95rem; }
+    .fade-up { opacity:0; transform:translateY(22px); transition:opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+    @media (max-width:1000px) { .hero-panel, .split, .contact-panel { grid-template-columns:1fr; } .skills-grid, .metric-grid, .bullet-grid, .findings-grid, .media-grid { grid-template-columns:1fr 1fr; } .contact-actions { justify-content:flex-start; } .orbit-wrap { height:280px; } }
+    @media (max-width:760px) { .nav-inner { align-items:flex-start; } .nav-controls, .nav-links { width:100%; } .hero-copy-wrap, .hero-portrait, .project-head, .project-body, .contact-panel { padding:1.4rem; } section { padding:4rem 0; } .skills-grid, .metric-grid, .bullet-grid, .findings-grid, .media-grid, .comparison-grid { grid-template-columns:1fr; } .project-head { flex-direction:column; } .hero-portrait { flex-direction:column-reverse; } .orbit-wrap { width:100%; min-width:0; height:220px; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">Raphael Dos Santos</div>
+      <div class="nav-controls">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="shell">
+    <section class="hero" id="home">
+      <div class="hero-panel fade-up">
+        <div class="hero-copy-wrap">
+          <div class="eyebrow">Mechanical Engineering Portfolio</div>
+          <h1 class="hero-name">Raphael <span>Dos Santos</span></h1>
+          <p class="hero-sub">Mechanical engineering student at the University of Central Florida with project experience spanning CAD development, structural analysis, Flow Simulation, design validation, and hands-on system testing.</p>
+          <div class="pill-row">
+            <span class="pill">CAD Modeling</span>
+            <span class="pill">FEA &amp; Simulation</span>
+            <span class="pill">Design Validation</span>
+            <span class="pill">Testing &amp; Documentation</span>
+          </div>
+          <div class="contact-row">
+            <a class="contact-link" href="mailto:raphsant123@gmail.com">raphsant123@gmail.com</a>
+            <a class="contact-link" href="tel:+16103355381">+1 (610) 335-5381</a>
+            <a class="contact-link" href="https://linkedin.com/in/rphldssnts/" target="_blank" rel="noreferrer">linkedin.com/in/rphldssnts</a>
+          </div>
+          <div class="intro-card">I enjoy engineering work that moves from concept to evidence: defining requirements, building geometry, evaluating performance, and communicating results in a way that supports real design decisions.</div>
+        </div>
+        <div class="hero-portrait">
+          <div class="orbit-wrap" aria-hidden="true">
+            <div class="orbit-grid"></div>
+            <div class="orbit-axis"></div>
+            <div class="orbit-ring r1"><div class="orbit-dot"></div></div>
+            <div class="orbit-ring r2"><div class="orbit-dot"></div></div>
+            <div class="orbit-ring r3"><div class="orbit-dot"></div></div>
+            <div class="orbit-core"></div>
+            <div class="orbit-label top">CAD</div>
+            <div class="orbit-label right">Analysis</div>
+            <div class="orbit-label bottom">Testing</div>
+            <div class="orbit-label left">Validation</div>
+          </div>
+          <div class="portrait-frame">
+            <img src="portfolio-assets/profile/Picture1.png" alt="Portrait of Raphael Dos Santos" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <div class="split">
+        <div class="card fade-up">
+          <div class="eyebrow">About</div>
+          <h2 class="section-title">A portfolio built to feel professional, technical, and easy to navigate.</h2>
+          <p class="section-copy">This site highlights selected academic and design work with an emphasis on engineering process, analysis, and communication. The projects below show how I approach modeling, validation, prototyping, and interpretation of results rather than only presenting final geometry.</p>
+        </div>
+        <div class="card fade-up">
+          <h3>What this portfolio emphasizes</h3>
+          <ul>
+            <li>Simulation-backed design decisions rather than surface-level visuals.</li>
+            <li>Hands-on project work involving fabrication, testing, and troubleshooting.</li>
+            <li>Clear technical communication through organized findings and supporting visuals.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="skills">
+      <div class="fade-up">
+        <div class="eyebrow">Skills</div>
+        <h2 class="section-title">Core strengths highlighted from the materials you provided.</h2>
+        <p class="section-copy">The skills below are organized around the work shown in your portfolio, report, part design document, and resume materials: CAD development, simulation, design review, and technical project execution.</p>
+      </div>
+      <div class="skills-grid fade-up">
+        <div class="skill-block">
+          <h3>CAD &amp; Modeling</h3>
+          <div class="skill-list">
+            <span class="skill-chip">SolidWorks</span>
+            <span class="skill-chip">Autodesk Fusion</span>
+            <span class="skill-chip">Part Design</span>
+            <span class="skill-chip">Assemblies</span>
+            <span class="skill-chip">Technical Drawings</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h3>Simulation &amp; Analysis</h3>
+          <div class="skill-list">
+            <span class="skill-chip">FEA</span>
+            <span class="skill-chip">Flow Simulation</span>
+            <span class="skill-chip">Static Analysis</span>
+            <span class="skill-chip">Frequency Analysis</span>
+            <span class="skill-chip">Topology Studies</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h3>Testing &amp; Validation</h3>
+          <div class="skill-list">
+            <span class="skill-chip">Functional Testing</span>
+            <span class="skill-chip">Data Acquisition</span>
+            <span class="skill-chip">Requirements Development</span>
+            <span class="skill-chip">Design Verification</span>
+            <span class="skill-chip">Troubleshooting</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h3>Project Execution</h3>
+          <div class="skill-list">
+            <span class="skill-chip">FMEA</span>
+            <span class="skill-chip">Pugh Matrix</span>
+            <span class="skill-chip">Gantt Planning</span>
+            <span class="skill-chip">Technical Reporting</span>
+            <span class="skill-chip">Team Leadership</span>
+          </div>
+        </div>
+      </div>
+      <div class="details-stack fade-up">
+        <details class="details-card" open>
+          <summary>Part Design Visuals <span>combined gallery</span></summary>
+          <div class="details-content">
+            Relevant images from the part design document are grouped here to support the skills section with actual modeling, manufacturing, and analysis visuals.
+            <div class="media-grid">
+              <figure class="media-figure">
+                <img class="contain" src="portfolio-assets/partdesign/Top Plate with bend.JPG" alt="Top bracket dimensioned drawing" />
+                <figcaption>Modeled component and dimensioned drawing used to communicate manufacturable geometry.</figcaption>
+              </figure>
+              <figure class="media-figure">
+                <img src="portfolio-assets/partdesign/topology customization and optimization.png" alt="Topology Customization and Optimization result" />
+                <figcaption>Topology Customization and Optimization study illustrating how material distribution was refined across the component.</figcaption>
+              </figure>
+              <figure class="media-figure">
+                <video class="contain" autoplay muted loop playsinline preload="metadata" aria-label="Assembly motion model">
+                  <source src="portfolio-assets/partdesign/AssemblyWithMotion.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Assembly-level CAD work with mass-property review and full mechanism context.</figcaption>
+              </figure>
+              <figure class="media-figure">
+                <img src="portfolio-assets/partdesign/manufactor directions.png" alt="Manufacturing direction planning view" />
+                <figcaption>CAM preparation tying digital part geometry to practical manufacturing strategy.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="fade-up">
+        <div class="eyebrow">Projects</div>
+        <h2 class="section-title">Selected engineering work.</h2>
+      </div>
+      <div class="projects-wrap">
+        <article class="project-card fade-up">
+          <div class="project-head">
+            <div>
+              <div class="project-kicker">Project 01</div>
+              <h3 class="project-title">Accelera Tire Testing Data Acquisition System</h3>
+              <div class="project-sub">Senior Design Project Finalist | Multisensor Drift-Vehicle DAQ System</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="section-copy">As part of a Senior Design Project Finalist team, I contributed to the design, integration, and evaluation of a multisensor data acquisition system mounted to a Nissan 240SX S13 drift car. The system combined onboard and offboard computing with subsystems for tire pressure, tire temperature, shock travel, and slip-angle-related measurement so the team could capture, transmit, and review vehicle data in a usable engineering workflow.</p>
+            <div class="metric-grid">
+              <div class="metric">
+                <strong>System Integration</strong>
+                <span>Supported a fully integrated architecture linking sensors, onboard electronics, and offboard data review.</span>
+              </div>
+              <div class="metric">
+                <strong>Subsystem Work</strong>
+                <span>Contributed directly to the Tire Pressure Sensor and Slip Angle portions of the project report and design work.</span>
+              </div>
+              <div class="metric">
+                <strong>Team Leadership</strong>
+                <span>Supported project coordination, communication, and execution while contributing to system evaluation and subsystem development.</span>
+              </div>
+            </div>
+            <ul class="bullet-grid">
+              <li>Worked on a senior design system that combined DAQ hardware, software, communications, and multiple sensing subsystems for drifting applications.</li>
+              <li>Served in a team lead role, helping manage communication, coordination, and progress across the senior design effort.</li>
+              <li>Contributed to technical work documented in the Tire Pressure Sensor, Slip Angle Sensor, Glossary, System Evaluation, Tolerance and Sensitivity, and Conclusions sections of the final report.</li>
+              <li>Used design-analysis methods such as weighted decision matrices, Pugh matrices, and FMEA-informed risk thinking across subsystem development.</li>
+              <li>Supported system evaluation through inspection-based verification and structured testing, including stationary, vibration, distance, and tire-sensor accuracy checks.</li>
+              <li>Helped translate subsystem concepts into schematics, CAD-supported packaging decisions, and final integrated-system documentation.</li>
+              <li>Presented the project as part of a Senior Design Finalist team, reinforcing both technical execution and communication quality.</li>
+            </ul>
+            <details class="details-card">
+              <summary>Project Photos <span>expand to view visuals</span></summary>
+              <div class="details-content">
+                <div class="media-grid">
+                  <figure class="media-figure">
+                    <img class="contain" src="portfolio-assets/accelera/image2.png" alt="Integrated system diagram for the Accelera tire testing unit" />
+                    <figcaption>System-level layout showing onboard sensing, the Onboard Computer, and the Offboard Computer connection.</figcaption>
+                  </figure>
+                  <figure class="media-figure">
+                    <img class="contain" src="portfolio-assets/accelera/image3.png" alt="Onboard Computer wiring diagram" />
+                    <figcaption>Onboard Computer architecture showing sensor inputs, power conversion, and wireless communication hardware.</figcaption>
+                  </figure>
+                  <figure class="media-figure">
+                    <img src="portfolio-assets/accelera/working on the car.PNG" alt="Working on the drift car during system setup and testing" />
+                    <figcaption>Team integration and troubleshooting during on-vehicle system setup and testing.</figcaption>
+                  </figure>
+                  <figure class="media-figure">
+                    <img src="portfolio-assets/accelera/image7.png" alt="Gantt chart used for project scheduling" />
+                    <figcaption>Project planning view showing the schedule structure used to track implementation and subsystem progress.</figcaption>
+                  </figure>
+                </div>
+                <div class="comparison-block">
+                  <div class="comparison-head">Design Evolution</div>
+                  <div class="comparison-copy">These bracket visuals show the progression from an earlier concept to the final product through material selection, stack-up analysis, prototyping, and dimensional inspection.</div>
+                  <div class="comparison-grid">
+                    <div class="comparison-card">
+                      <div class="comparison-label">Before</div>
+                      <img src="portfolio-assets/accelera/image4.png" alt="Earlier bracket concept for the tire testing unit" />
+                      <p>Earlier concept used as the starting point before packaging, mounting, and design refinement.</p>
+                    </div>
+                    <div class="comparison-card">
+                      <div class="comparison-label">After</div>
+                      <img src="portfolio-assets/accelera/image5.png" alt="Final bracket product for the tire testing unit" />
+                      <p>Final product developed through material selection, stack-up analysis, prototyping, and dimensional inspection to better understand tolerance and fit.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+        <article class="project-card fade-up">
+          <div class="project-head">
+            <div>
+              <div class="project-kicker">Project 02</div>
+              <h3 class="project-title">Rear Wing Simulation and Validation Study</h3>
+              <div class="project-sub">Finite Volume, Static Structural, and Vibration Analysis</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="section-copy">Modeled a custom ABS rear wing in SolidWorks and evaluated it through an integrated simulation workflow covering flow behavior, static response, and vibration performance. The study used a 0.3 m chord, 1.3 m span, bonded endplates, and fixed bracket tabs to examine whether the concept could generate useful aerodynamic loading while remaining structurally sound and stiff enough for high-speed use.</p>
+            <div class="metric-grid">
+              <div class="metric">
+                <strong>40 m/s</strong>
+                <span>Freestream speed used in the time-dependent flow simulation, with angle of attack stepped from -20 degrees to 16 degrees.</span>
+              </div>
+              <div class="metric">
+                <strong>329 N</strong>
+                <span>Approximate peak downward force reported in the flow results and used to inform the structural studies.</span>
+              </div>
+              <div class="metric">
+                <strong>42.669 Hz</strong>
+                <span>First natural frequency, clearing the report's 40 Hz target for avoiding flutter concerns.</span>
+              </div>
+            </div>
+            <ul class="bullet-grid">
+              <li>Used SolidWorks Flow Simulation to track drag, downforce, and coefficient of lift across the tested angle-of-attack range.</li>
+              <li>Applied the aerodynamic loading to a static study and reported a maximum stress around 0.484 MPa, below the stated ABS yield-strength range.</li>
+              <li>Ran a frequency study to evaluate natural frequencies and mode shapes for the wing with both mounting tabs fully fixed.</li>
+              <li>Validated results through hand calculations and comparison with external aerodynamic and vibration studies on similar spoiler systems.</li>
+              <li>Found that the wing behaved as intended for general use, while also identifying that the selected airfoil shape was not ideal for motorsports-level performance.</li>
+              <li>Used the study to translate simulation outputs into a clear engineering verdict and next-step design direction.</li>
+            </ul>
+            <details class="details-card">
+              <summary>Project Photos <span>expand to view report visuals</span></summary>
+              <div class="details-content">
+                <div class="media-grid">
+                  <figure class="media-figure">
+                    <img class="contain" src="portfolio-assets/spoiler/LFvsAoA.png" alt="Lift force versus angle of attack chart" />
+                    <figcaption>Lift force versus angle of attack plot used to track how aerodynamic loading changed across the simulated range.</figcaption>
+                  </figure>
+                  <figure class="media-figure">
+                    <img src="portfolio-assets/report/image15.png" alt="Flow simulation trajectories around spoiler" />
+                    <figcaption>Flow trajectories used to study how the wing interacted with the passing air stream.</figcaption>
+                  </figure>
+                  <figure class="media-figure">
+                    <img src="portfolio-assets/report/image16.png" alt="Von Mises stress result for spoiler" />
+                    <figcaption>Stress distribution showing where the spoiler experienced greater structural demand.</figcaption>
+                  </figure>
+                  <figure class="media-figure">
+                    <img src="portfolio-assets/report/image17.png" alt="Displacement result for spoiler under load" />
+                    <figcaption>Displacement response used to interpret stiffness and deformation under load.</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="card contact-panel fade-up">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2 class="section-title">Open to engineering opportunities and technical conversations.</h2>
+          <p class="section-copy">If you would like to discuss my work, resume, or project experience in more detail, feel free to reach out directly.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="action-btn primary" href="mailto:raphsant123@gmail.com">Email</a>
+          <a class="action-btn" href="tel:+16103355381">Call</a>
+          <a class="action-btn" href="https://linkedin.com/in/rphldssnts/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+    <footer>Mechanical Engineering Portfolio | Raphael Dos Santos | University of Central Florida</footer>
+  </main>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".fade-up").forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
