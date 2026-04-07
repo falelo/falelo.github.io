@@ -357,60 +357,76 @@
         </article>
         <article class="project-card fade-up">
           <div class="project-head">
-            <div>
-              <div class="project-kicker">Project 02</div>
-              <h3 class="project-title">Rear Wing Simulation and Validation Study</h3>
-              <div class="project-sub">Finite Volume, Static Structural, and Vibration Analysis</div>
-            </div>
-          </div>
-          <div class="project-body">
-            <p class="section-copy">Modeled a custom ABS rear wing in SolidWorks and evaluated it through an integrated simulation workflow covering flow behavior, static response, and vibration performance. The study used a 0.3 m chord, 1.3 m span, bonded endplates, and fixed bracket tabs to examine whether the concept could generate useful aerodynamic loading while remaining structurally sound and stiff enough for high-speed use.</p>
-            <div class="metric-grid">
-              <div class="metric">
-                <strong>40 m/s</strong>
-                <span>Freestream speed used in the time-dependent flow simulation, with angle of attack stepped from -20 degrees to 16 degrees.</span>
-              </div>
-              <div class="metric">
-                <strong>329 N</strong>
-                <span>Approximate peak downward force reported in the flow results and used to inform the structural studies.</span>
-              </div>
-              <div class="metric">
-                <strong>42.669 Hz</strong>
-                <span>First natural frequency, clearing the report's 40 Hz target for avoiding flutter concerns.</span>
-              </div>
-            </div>
-            <ul class="bullet-grid">
-              <li>Used SolidWorks Flow Simulation to track drag, downforce, and coefficient of lift across the tested angle-of-attack range.</li>
-              <li>Applied the aerodynamic loading to a static study and reported a maximum stress around 0.484 MPa, below the stated ABS yield-strength range.</li>
-              <li>Ran a frequency study to evaluate natural frequencies and mode shapes for the wing with both mounting tabs fully fixed.</li>
-              <li>Validated results through hand calculations and comparison with external aerodynamic and vibration studies on similar spoiler systems.</li>
-              <li>Found that the wing behaved as intended for general use, while also identifying that the selected airfoil shape was not ideal for motorsports-level performance.</li>
-              <li>Used the study to translate simulation outputs into a clear engineering verdict and next-step design direction.</li>
-            </ul>
-            <details class="details-card">
-              <summary>Project Photos <span>expand to view report visuals</span></summary>
-              <div class="details-content">
-                <div class="media-grid">
-                  <figure class="media-figure">
-                    <img class="contain" src="portfolio-assets/spoiler/LFvsAoA.png" alt="Lift force versus angle of attack chart" />
-                    <figcaption>Lift force versus angle of attack plot used to track how aerodynamic loading changed across the simulated range.</figcaption>
-                  </figure>
-                  <figure class="media-figure">
-                    <img src="portfolio-assets/report/image15.png" alt="Flow simulation trajectories around spoiler" />
-                    <figcaption>Flow trajectories used to study how the wing interacted with the passing air stream.</figcaption>
-                  </figure>
-                  <figure class="media-figure">
-                    <img src="portfolio-assets/report/image16.png" alt="Von Mises stress result for spoiler" />
-                    <figcaption>Stress distribution showing where the spoiler experienced greater structural demand.</figcaption>
-                  </figure>
-                  <figure class="media-figure">
-                    <img src="portfolio-assets/report/image17.png" alt="Displacement result for spoiler under load" />
-                    <figcaption>Displacement response used to interpret stiffness and deformation under load.</figcaption>
-                  </figure>
-                </div>
-              </div>
-            </details>
-          </div>
+  <div>
+    <div class="project-kicker">Project 02</div>
+    <h3 class="project-title">Rear Wing Simulation and Validation Study</h3>
+    <div class="project-sub">Finite Volume, Static Structural, and Vibration Analysis</div>
+  </div>
+</div>
+<div class="project-body">
+  <p class="section-copy">
+    Designed and evaluated a custom ABS rear wing using an integrated CFD, structural, and vibration simulation workflow to determine whether the concept could safely generate useful aerodynamic downforce at highway speeds.
+  </p>
+  <p class="section-copy">
+    Simulated aerodynamic loading across an angle-of-attack sweep and transferred those results into static and modal studies to verify stiffness, stress performance, and flutter resistance. Results showed the wing produced measurable downforce while maintaining stresses well below material limits and a first natural frequency above the target threshold.
+  </p>
+
+  <div class="metric-grid">
+    <div class="metric">
+      <strong>40 m/s</strong>
+      <span>Freestream speed representing highway-speed aerodynamic loading conditions.</span>
+    </div>
+    <div class="metric">
+      <strong>329 N</strong>
+      <span>Peak reported downward force used to inform the structural loading case.</span>
+    </div>
+    <div class="metric">
+      <strong>42.669 Hz</strong>
+      <span>First natural frequency exceeded the flutter-avoidance target, confirming structural stability margin.</span>
+    </div>
+  </div>
+
+  <ul class="bullet-grid">
+    <li>Ran a CFD angle-of-attack sweep in SolidWorks Flow Simulation to characterize lift, drag, and downforce behavior across operating conditions.</li>
+    <li>Transferred aerodynamic loading into a static structural study to evaluate stress and displacement under simulated high-speed loading.</li>
+    <li>Verified that the reported maximum stress remained below the stated ABS yield-strength range, supporting structural feasibility.</li>
+    <li>Performed a vibration study to evaluate natural frequencies and mode shapes with fixed mounting-tab boundary conditions.</li>
+    <li>Cross-checked results against analytical estimates and published reference studies on comparable rear-wing and spoiler geometries.</li>
+    <li>Used the final study to determine that the structure met stiffness and flutter targets, while the selected airfoil geometry was not ideal for motorsports-level aerodynamic performance.</li>
+  </ul>
+
+  <div class="card" style="padding:1.25rem 1.3rem;">
+    <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">Engineering Conclusion</h3>
+    <p class="section-copy" style="max-width:none;">
+      While the structure met stress and vibration requirements, aerodynamic performance suggested the selected airfoil profile was better suited to general-use validation than motorsports-level downforce generation. Future iterations would focus on higher-performance airfoil geometry, expanded angle-of-attack testing, and additional aerodynamic validation against application-specific operating conditions.
+    </p>
+  </div>
+
+  <details class="details-card">
+    <summary>Project Photos <span>expand to view report visuals</span></summary>
+    <div class="details-content">
+      <div class="media-grid">
+        <figure class="media-figure">
+          <img class="contain" src="portfolio-assets/spoiler/LFvsAoA.png" alt="Lift force versus angle of attack chart" />
+          <figcaption>Lift force versus angle of attack plot used to track how aerodynamic loading changed across the simulated range.</figcaption>
+        </figure>
+        <figure class="media-figure">
+          <img src="portfolio-assets/report/image15.png" alt="Flow simulation trajectories around spoiler" />
+          <figcaption>Flow trajectories used to study how the wing interacted with the passing air stream.</figcaption>
+        </figure>
+        <figure class="media-figure">
+          <img src="portfolio-assets/report/image16.png" alt="Von Mises stress result for spoiler" />
+          <figcaption>Stress distribution showing where the spoiler experienced greater structural demand.</figcaption>
+        </figure>
+        <figure class="media-figure">
+          <img src="portfolio-assets/report/image17.png" alt="Displacement result for spoiler under load" />
+          <figcaption>Displacement response used to interpret stiffness and deformation under load.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </details>
+</div>
+
         </article>
       </div>
     </section>
